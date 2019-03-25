@@ -6,7 +6,7 @@ namespace NIKMintaZH1
     {
         // Kezdes 20:20
         static void Main(string[] args)
-        { 
+        {
             Console.ReadKey();
         }
     }
