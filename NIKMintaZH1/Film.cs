@@ -6,7 +6,6 @@ namespace NIKMintaZH1
 {
     class Film
     {
-        // Kezdes 20:20
         //olvashato cim, ár, értékelések, és átlag
         public string Cim { get; private set; }
         public int Ar { get; private set; }
@@ -36,7 +35,7 @@ namespace NIKMintaZH1
             Ar = _ar;
             Cim = _cim;
         }
-        void Értékel(int érték)
+        public virtual void Értékel(int érték)
         {
             if (Ertekelesek.Count < 10)
             {

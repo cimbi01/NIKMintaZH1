@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace NIKMintaZH1
+{
+    class AkcióFilm : Film, IKorhatáros
+    {
+        public int AlsoKorhatar { get; private set; }
+
+        public int Korhatar => AlsoKorhatar;
+
+        public AkcióFilm(string _cim, int _ar, int _alsokorhatar) : base(_cim, _ar)
+        {
+            AlsoKorhatar = _alsokorhatar;
+        }
+        public override void Értékel(int érték)
+        {
+            // ha az érték nem 5 csak akkor fut le
+            if (érték < 5)
+            {
+                base.Értékel(érték);
+            }
+        }
+
+        public int Buntetes(int eletkor)
+        {
+            return (eletkor - Korhatar) * Ar;
+        }
+    }
+}
