@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NIKMintaZH1
+﻿namespace NIKMintaZH1
 {
-    interface IKorhatáros
+    internal interface IKorhatáros
     {
+        #region Public Properties
+
         int Korhatar { get; }
+
+        #endregion Public Properties
+
+        #region Public Methods
+
         int Buntetes(int eletkor);
+
+        #endregion Public Methods
     }
 }

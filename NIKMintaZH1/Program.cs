@@ -3,12 +3,34 @@ using System.Collections.Generic;
 
 namespace NIKMintaZH1
 {
-    class Program
+    internal class Program
     {
+        #region Private Methods
+
+        // visszaad egy tömböt az akciófilmekkel és pár puzzle-el
+        private static IKorhatáros[] IKorhatárosok(Film[] filmek)
+        {
+            List<IKorhatáros> korhatarosok = new List<IKorhatáros>();
+            foreach (Film item in filmek)
+            {
+                if (item is AkcióFilm)
+                {
+                    korhatarosok.Add(item as AkcióFilm);
+                }
+            }
+            // random puzzle amiket bel kell rakni a feladat szerint
+            korhatarosok.Add(new Puzzle(500));
+            korhatarosok.Add(new Puzzle(1000));
+            korhatarosok.Add(new Puzzle(1500));
+            korhatarosok.Add(new Puzzle(2500));
+            return korhatarosok.ToArray();
+        }
+
         // Kezdes 20:20
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             #region Filmek
+
             Film[] filmek = new Film[5];
             filmek[0] = new AkcióFilm("AkcióFilmVagyok", 3000, 16);
             filmek[1] = new Film("PistaÉsBéla", 1500);
@@ -34,17 +56,18 @@ namespace NIKMintaZH1
             if (legolcsobbfilm is AkcióFilm)
             {
                 Console.WriteLine("A film akciófilm\n" +
-                    "A film korhatára: {1}", (legolcsobbfilm as AkcióFilm).Korhatar); 
+                    "A film korhatára: {1}", (legolcsobbfilm as AkcióFilm).Korhatar);
             }
-            #endregion
+
+            #endregion Filmek
 
             #region Puzzle
-
 
             IKorhatáros[] korhatarosok = IKorhatárosok(filmek);
             // korhatár függvényében visszaadja hány filmet lehet megnézni
             int buntetlenulnezheto = 0;
-            // korhatár, amit gondolom be kell kérni, csak a feladat kretén és nem adja meg, mit csináljak vele
+            // korhatár, amit gondolom be kell kérni, csak a feladat kretén és nem adja meg, mit
+            // csináljak vele
             int kor = 16;
             // filmek között keresi a helyeseket
             foreach (Film item in filmek)
@@ -70,8 +93,7 @@ namespace NIKMintaZH1
             int osszbuntetes = 0;
             foreach (IKorhatáros item in korhatarosok)
             {
-                // ha a korhatár nagyobb mint a kor
-                // akkor van bünti
+                // ha a korhatár nagyobb mint a kor akkor van bünti
                 if (item.Korhatar > kor)
                 {
                     osszbuntetes += item.Buntetes(kor);
@@ -79,11 +101,13 @@ namespace NIKMintaZH1
             }
             Console.WriteLine("Összbüntetetés: {0}", osszbuntetes);
             Console.WriteLine("A büntetés azért minusz mert a feladatban meg volt adva hogy a buntetés\n(életkor paraméter – korhatár) * ár/1000 (Puzzle vagy Akciófilm változó");
-            #endregion
+
+            #endregion Puzzle
 
             Console.ReadKey();
         }
-        static int MinimumKereses(Film[] filmek)
+
+        private static int MinimumKereses(Film[] filmek)
         {
             int minindex = 0;
             for (int i = 1; i < filmek.Length; i++)
@@ -95,23 +119,7 @@ namespace NIKMintaZH1
             }
             return minindex;
         }
-        // visszaad egy tömböt az akciófilmekkel és pár puzzle-el
-        static IKorhatáros[] IKorhatárosok(Film[] filmek)
-        {
-            List<IKorhatáros> korhatarosok = new List<IKorhatáros>();
-            foreach (Film item in filmek)
-            {
-                if (item is AkcióFilm)
-                {
-                    korhatarosok.Add(item as AkcióFilm);
-                }
-            }
-            // random puzzle amiket bel kell rakni a feladat szerint
-            korhatarosok.Add(new Puzzle(500));
-            korhatarosok.Add(new Puzzle(1000));
-            korhatarosok.Add(new Puzzle(1500));
-            korhatarosok.Add(new Puzzle(2500));
-            return korhatarosok.ToArray();
-        }
+
+        #endregion Private Methods
     }
 }

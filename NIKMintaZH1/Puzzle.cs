@@ -18,11 +18,15 @@
         // Vajon ez lefut?
         public int Korhatar => DarabSzam / 500;
 
+        #endregion Public Properties
+
+        #region Public Methods
+
         public int Buntetes(int eletkor)
         {
             return (eletkor - Korhatar) * 1000;
         }
 
-        #endregion Public Properties
+        #endregion Public Methods
     }
 }
