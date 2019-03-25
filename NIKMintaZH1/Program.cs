@@ -16,6 +16,7 @@ namespace NIKMintaZH1
             filmek[3] = new AkcióFilm("Akcijó!", 5000, 18);
             filmek[4] = new Film("MivanMár", 2500);
             Film legolcsobbfilm = filmek[MinimumKereses(filmek)];
+            Console.WriteLine("Legolcsóbb film:");
             Console.WriteLine("A film címe: {0}" +
                 "\nA film ára: {1}", legolcsobbfilm.Cim, legolcsobbfilm.Ar);
             // ÁTLAG KIVÉTELT DOB AZT LE KELL KEZELNI
@@ -71,12 +72,13 @@ namespace NIKMintaZH1
             {
                 // ha a korhatár nagyobb mint a kor
                 // akkor van bünti
-                if (item.Korhatar <= kor)
+                if (item.Korhatar > kor)
                 {
                     osszbuntetes += item.Buntetes(kor);
                 }
             }
             Console.WriteLine("Összbüntetetés: {0}", osszbuntetes);
+            Console.WriteLine("A büntetés azért minusz mert a feladatban meg volt adva hogy a buntetés\n(életkor paraméter – korhatár) * ár/1000 (Puzzle vagy Akciófilm változó");
             #endregion
 
             Console.ReadKey();

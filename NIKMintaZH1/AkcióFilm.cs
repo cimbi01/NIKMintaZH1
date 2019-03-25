@@ -17,6 +17,7 @@ namespace NIKMintaZH1
         public override void Értékel(int érték)
         {
             // ha az érték nem 5 csak akkor fut le
+            // ellenkező esetben nyilván szép dolog lenne, ha dobna egy kivételt, de nem fog
             if (érték < 5)
             {
                 base.Értékel(érték);
