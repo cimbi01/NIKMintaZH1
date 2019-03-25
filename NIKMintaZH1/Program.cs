@@ -65,6 +65,18 @@ namespace NIKMintaZH1
                 }
             }
             Console.WriteLine("Büntetlenül vásárolható: {0}", buntetlenulnezheto);
+
+            int osszbuntetes = 0;
+            foreach (IKorhatáros item in korhatarosok)
+            {
+                // ha a korhatár nagyobb mint a kor
+                // akkor van bünti
+                if (item.Korhatar <= kor)
+                {
+                    osszbuntetes += item.Buntetes(kor);
+                }
+            }
+            Console.WriteLine("Összbüntetetés: {0}", osszbuntetes);
             #endregion
 
             Console.ReadKey();
