@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace NIKMintaZH1
 {
@@ -36,7 +37,35 @@ namespace NIKMintaZH1
             }
             #endregion
 
+            #region Puzzle
 
+
+            IKorhatáros[] korhatarosok = IKorhatárosok(filmek);
+            // korhatár függvényében visszaadja hány filmet lehet megnézni
+            int buntetlenulnezheto = 0;
+            // korhatár, amit gondolom be kell kérni, csak a feladat kretén és nem adja meg, mit csináljak vele
+            int kor = 16;
+            // filmek között keresi a helyeseket
+            foreach (Film item in filmek)
+            {
+                // ha nem akciófilm
+                if (!(item is AkcióFilm))
+                {
+                    buntetlenulnezheto++;
+                }
+            }
+            // korhatarosok között keres
+
+            foreach (IKorhatáros item in korhatarosok)
+            {
+                // ha a korhatár kisebb egyenlő mint a kor
+                if (item.Korhatar <= kor)
+                {
+                    buntetlenulnezheto++;
+                }
+            }
+            Console.WriteLine("Büntetlenül vásárolható: {0}", buntetlenulnezheto);
+            #endregion
 
             Console.ReadKey();
         }
@@ -51,6 +80,24 @@ namespace NIKMintaZH1
                 }
             }
             return minindex;
+        }
+        // visszaad egy tömböt az akciófilmekkel és pár puzzle-el
+        static IKorhatáros[] IKorhatárosok(Film[] filmek)
+        {
+            List<IKorhatáros> korhatarosok = new List<IKorhatáros>();
+            foreach (Film item in filmek)
+            {
+                if (item is AkcióFilm)
+                {
+                    korhatarosok.Add(item as AkcióFilm);
+                }
+            }
+            // random puzzle amiket bel kell rakni a feladat szerint
+            korhatarosok.Add(new Puzzle(500));
+            korhatarosok.Add(new Puzzle(1000));
+            korhatarosok.Add(new Puzzle(1500));
+            korhatarosok.Add(new Puzzle(2500));
+            return korhatarosok.ToArray();
         }
     }
 }
