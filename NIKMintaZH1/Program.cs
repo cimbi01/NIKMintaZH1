@@ -7,25 +7,6 @@ namespace NIKMintaZH1
     {
         #region Private Methods
 
-        // visszaad egy tömböt az akciófilmekkel és pár puzzle-el
-        private static IKorhatáros[] IKorhatárosok(Film[] filmek)
-        {
-            List<IKorhatáros> korhatarosok = new List<IKorhatáros>();
-            foreach (Film item in filmek)
-            {
-                if (item is AkcióFilm)
-                {
-                    korhatarosok.Add(item as AkcióFilm);
-                }
-            }
-            // random puzzle amiket bel kell rakni a feladat szerint
-            korhatarosok.Add(new Puzzle(500));
-            korhatarosok.Add(new Puzzle(1000));
-            korhatarosok.Add(new Puzzle(1500));
-            korhatarosok.Add(new Puzzle(2500));
-            return korhatarosok.ToArray();
-        }
-
         // Kezdes 20:20
         private static void Main(string[] args)
         {
@@ -106,7 +87,24 @@ namespace NIKMintaZH1
 
             Console.ReadKey();
         }
-
+        // visszaad egy tömböt az akciófilmekkel és pár puzzle-el
+        private static IKorhatáros[] IKorhatárosok(Film[] filmek)
+        {
+            List<IKorhatáros> korhatarosok = new List<IKorhatáros>();
+            foreach (Film item in filmek)
+            {
+                if (item is AkcióFilm)
+                {
+                    korhatarosok.Add(item as AkcióFilm);
+                }
+            }
+            // random puzzle amiket bel kell rakni a feladat szerint
+            korhatarosok.Add(new Puzzle(500));
+            korhatarosok.Add(new Puzzle(1000));
+            korhatarosok.Add(new Puzzle(1500));
+            korhatarosok.Add(new Puzzle(2500));
+            return korhatarosok.ToArray();
+        }
         private static int MinimumKereses(Film[] filmek)
         {
             int minindex = 0;

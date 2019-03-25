@@ -3,17 +3,6 @@ using System.Collections.Generic;
 
 namespace NIKMintaZH1
 {
-    internal class ÁtlagSzámításHiba : FilmHibaException
-    {
-        #region Public Constructors
-
-        public ÁtlagSzámításHiba(Film _film) : base(_film, "Nem lett még leadva egy értékelés se, így az átlag nem számolható ki!")
-        {
-        }
-
-        #endregion Public Constructors
-    }
-
     internal class Film
     {
         #region Public Constructors
@@ -29,6 +18,7 @@ namespace NIKMintaZH1
 
         #region Public Properties
 
+        //olvashato cim, ár, és átlag
         public int Ar { get; private set; }
         public double Átlag
         {
@@ -42,7 +32,7 @@ namespace NIKMintaZH1
                         atlag += item;
                     }
                     // ez vajon valóban jót ad vissza?
-                    atlag /= Ertekelesek.Count;
+                    atlag /= (double)Ertekelesek.Count;
                 }
                 else
                 {
@@ -51,7 +41,6 @@ namespace NIKMintaZH1
                 return atlag;
             }
         }
-        //olvashato cim, ár, és átlag
         public string Cim { get; private set; }
 
         #endregion Public Properties
@@ -100,8 +89,9 @@ namespace NIKMintaZH1
 
     // Nem a legelegánsabb mert a FilmHibaException egy az egybenn ugyanaz, mint az
     // ÁtlagSzámításHiba, de a feladat azt írta legyen egy közös ősük lehetne az ÁtlagSzámításHiba,
-    // mint közös ős, attól függ, hogy értelmezzük a feladatot uj ertekeles hiba benne referencia a
-    // filmra ahol dobódott, és az értékeléssel, ami dobott
+    // mint közös ős, attól függ, hogy értelmezzük a feladatot
+
+    // uj ertekeles hiba benne referencia a filmra ahol dobódott, és az értékeléssel, ami dobott
     internal class ÚjÉrtékelésHiba : FilmHibaException
     {
         #region Public Constructors
@@ -118,5 +108,15 @@ namespace NIKMintaZH1
         public int Ertek { get; private set; }
 
         #endregion Public Properties
+    }
+    internal class ÁtlagSzámításHiba : FilmHibaException
+    {
+        #region Public Constructors
+
+        public ÁtlagSzámításHiba(Film _film) : base(_film, "Nem lett még leadva egy értékelés se, így az átlag nem számolható ki!")
+        {
+        }
+
+        #endregion Public Constructors
     }
 }
