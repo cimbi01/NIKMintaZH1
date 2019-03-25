@@ -6,5 +6,7 @@ namespace NIKMintaZH1
 {
     interface IKorhatáros
     {
+        int Korhatar { get; }
+        int Buntetes(int eletkor);
     }
 }
