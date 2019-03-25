@@ -6,7 +6,7 @@ namespace NIKMintaZH1
 {
     class AkcióFilm : Film, IKorhatáros
     {
-        public int AlsoKorhatar { get; private set; }
+        private int AlsoKorhatar { get; set; }
 
         public int Korhatar => AlsoKorhatar;
 
